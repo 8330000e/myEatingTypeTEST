@@ -19,7 +19,7 @@ export default function KakaoShare({ title, description }: KakaoShareProps) {
     if (typeof window !== "undefined" && window.Kakao) {
       if (!window.Kakao.isInitialized()) {
         // 발급받은 JavaScript 키를 입력하세요
-        window.Kakao.init("YOUR_JAVASCRIPT_KEY");
+        window.Kakao.init("7388a63b72cfed2aba1a10810ae90dc1");
       }
     }
   }, []);

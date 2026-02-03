@@ -4,18 +4,18 @@ import { useRouter } from 'next/navigation';
 import { Question, EatingType } from '@/types';
 
 const QUESTIONS: Question[] = [
-    { id: 1, type: "fuel", text: "나는 배가 고프다는 신호가 올 때만 식사를 시작한다." },
-    { id: 2, type: "emotional", text: "기분이 우울하거나 스트레스를 받으면 특정 음식이 강렬하게 당긴다." },
-    { id: 3, type: "fog", text: "TV나 스마트폰을 보면서 먹다 보면 내가 얼마나 먹었는지 기억나지 않는다." },
-    { id: 4, type: "intuitive", text: "나는 내 몸이 지금 어떤 영양소를 원하는지(예: 단백질, 신선한 야채 등) 잘 느낀다." },
-    { id: 5, type: "fog", text: "배가 이미 부른데도 음식이 앞에 있으면 무의식적으로 손이 간다." },
-    { id: 6, type: "fuel", text: "음식은 즐거움보다는 내 몸을 움직이게 하는 에너지원이라고 생각한다." },
-    { id: 7, type: "emotional", text: "기쁜 일이 생기면 맛있는 음식을 먹으며 보상받고 싶은 마음이 크다." },
-    { id: 8, type: "intuitive", text: "칼로리 숫자에 집착하기보다 먹고 나서 내 몸이 편안한 음식을 선택한다." },
-    { id: 9, type: "fuel", text: "바쁠 때는 식사를 단순히 해결해야 할 '숙제'처럼 처리한다." },
-    { id: 10, type: "fog", text: "입이 심심해서 과자나 간식을 먹기 시작하면 어느새 한 봉지를 다 비운다." },
-    { id: 11, type: "emotional", text: "불안하거나 화가 날 때 먹는 행위가 나를 진정시켜준다고 느낀다." },
-    { id: 12, type: "intuitive", text: "특정 음식을 '나쁜 음식'으로 규정하지 않고 적당히 즐겁게 먹는다." }
+  { id: 1, type: "fog", text: "식사를 할 때 TV나 스마트폰을 보느라 무엇을 먹었는지 기억이 잘 안 날 때가 많다." },
+  { id: 2, type: "fuel", text: "식사 메뉴를 고를 때 맛보다는 영양 성분이나 칼로리를 먼저 따진다." },
+  { id: 3, type: "emotional", text: "기분이 우울하거나 스트레스를 받으면 특정 음식이 강렬하게 당긴다." },
+  { id: 4, type: "intuitive", text: "배가 부르다는 느낌이 들면 맛있는 음식이 남아있어도 식사를 멈춘다." },
+  { id: 5, type: "fog", text: "배가 고프지 않아도 습관적으로 간식을 찾거나 냉장고를 열어본다." },
+  { id: 6, type: "fuel", text: "음식은 즐거움보다 하루를 버티기 위한 에너지원(연료)에 가깝다고 생각한다." },
+  { id: 7, type: "emotional", text: "나에게 보상을 주고 싶을 때 '맛있는 음식을 먹는 것'이 가장 먼저 떠오른다." },
+  { id: 8, type: "intuitive", text: "배고픔 신호가 확실히 오기 전까지는 굳이 식사 시간에 연연하지 않는다." },
+  { id: 9, type: "fog", text: "무언가에 집중하면서 무의식적으로 음식을 집어 먹는 경우가 잦다." },
+  { id: 10, type: "fuel", text: "바쁠 때는 맛보다는 간편하게 한 끼를 때울 수 있는 효율적인 식사를 선호한다." },
+  { id: 11, type: "emotional", text: "일이 잘 풀리지 않은 날에는 자극적인 음식을 먹어야 스트레스가 풀린다." },
+  { id: 12, type: "intuitive", text: "나는 내 몸이 지금 어떤 영양소나 음식을 원하는지 잘 알고 있다." },
 ];
 
 export default function TestPage() {
