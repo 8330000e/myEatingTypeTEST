@@ -2,13 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { useEffect } from "react";
-
-declare global {
-  interface Window {
-    Kakao: any;
-  }
-}
+import KakaoShare from "@/components/KakaoShare";
 
 const RESULTS = {
   fuel: {
@@ -61,40 +55,6 @@ export default function ResultPage() {
   const searchParams = useSearchParams();
   const type = (searchParams.get("type") as keyof typeof RESULTS) || "fog";
   const data = RESULTS[type];
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.Kakao) {
-      if (!window.Kakao.isInitialized()) {
-        window.Kakao.init("7388a63b72cfed2aba1a10810ae90dc1"); 
-      }
-    }
-  }, []);
-  
-  const shareToKakao = () => {
-    if (!window.Kakao) return;
-
-    window.Kakao.Share.sendDefault({
-      objectType: 'feed',
-      content: {
-        title: `나의 식습관 유형은? [${type}]`,
-        description: '재미로 보는 나의 식습관 동물 유형 테스트!',
-        imageUrl: 'https://your-site.com/og-image.png', // 공유 시 보여줄 이미지 주소
-        link: {
-          mobileWebUrl: window.location.href,
-          webUrl: window.location.href,
-        },
-      },
-      buttons: [
-        {
-          title: '결과 확인하기',
-          link: {
-            mobileWebUrl: window.location.href,
-            webUrl: window.location.href,
-          },
-        },
-      ],
-    });
-  };
 
   return (
     <div className="min-h-screen bg-slate-50 py-12 px-6 pb-24">
@@ -178,7 +138,7 @@ export default function ResultPage() {
 
             {/* 🔥 아주 두껍고 눈에 띄는 버튼 */}
             <Link 
-              href="https://your-survey-link.com" 
+              href="https://tally.so/r/68N4yo" 
               target="_blank"
               className="inline-flex items-center justify-center w-full py-5 bg-indigo-600 text-white rounded-[1.5rem] text-lg font-black tracking-tight shadow-lg shadow-indigo-200 hover:bg-indigo-700 active:scale-[0.98] transition-all"
             >
@@ -191,14 +151,12 @@ export default function ResultPage() {
           </div>
         </section>
 
-        {/* 💬 [눈에 띄는 섹션 2] 카톡 공유 & 다시하기 */}
+        {/* 💬 카톡 공유 & 다시하기 섹션 */}
         <div className="grid grid-cols-2 gap-3">
-          <button 
-            onClick={shareToKakao}
-            className="flex items-center justify-center gap-2 py-5 bg-[#FEE500] text-[#3c1e1e] rounded-[2rem] font-bold text-lg hover:bg-[#fada00] shadow-md transition-all active:scale-95"
-          >
-            <span className="text-xl">💬</span> 카톡 공유
-          </button>
+          {/* 1. 이 부분을 컴포넌트로 교체합니다 */}
+          <KakaoShare type={data.title} /> 
+
+          {/* 2. 다시하기 버튼 */}
           <Link 
             href="/" 
             className="flex items-center justify-center py-5 bg-slate-900 text-white rounded-[2rem] font-bold text-lg hover:bg-slate-800 shadow-md transition-all active:scale-95"

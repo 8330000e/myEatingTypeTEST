@@ -1,7 +1,8 @@
 "use client";
+
 import { useEffect } from "react";
 
-// 글로벌 window 객체에 Kakao 속성 정의 (TypeScript 에러 방지)
+// 글로벌 선언 (Kakao SDK 인식용)
 declare global {
   interface Window {
     Kakao: any;
@@ -9,29 +10,27 @@ declare global {
 }
 
 interface KakaoShareProps {
-  title: string;
-  description: string;
+  type: string;
 }
 
-export default function KakaoShare({ title, description }: KakaoShareProps) {
+export default function KakaoShare({ type }: KakaoShareProps) {
   useEffect(() => {
-    // SDK 초기화 확인
-    if (typeof window !== "undefined" && window.Kakao) {
-      if (!window.Kakao.isInitialized()) {
-        // 발급받은 JavaScript 키를 입력하세요
-        window.Kakao.init("7388a63b72cfed2aba1a10810ae90dc1");
+    const initKakao = () => {
+      if (window.Kakao && !window.Kakao.isInitialized()) {
+        window.Kakao.init("cadc1ccc67e7bb8280561b47a515f4c3"); // 여기에 카카오 키 넣으세요!
       }
-    }
+    };
+    initKakao();
   }, []);
 
-  const handleShare = () => {
-    if (typeof window !== "undefined" && window.Kakao) {
+  const shareToKakao = () => {
+    if (window.Kakao) {
       window.Kakao.Share.sendDefault({
         objectType: 'feed',
         content: {
-          title: `나의 식습관 동물은 [${title}]!`,
-          description: description,
-          imageUrl: 'https://your-domain.com/og-image.png', // 실제 이미지 URL로 변경 필요
+          title: '나의 식습관 동물 유형 테스트',
+          description: `내 식습관은 [${type}] 유형! 당신은 어떤 동물인가요?`,
+          imageUrl: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=800&auto=format&fit=crop', // 임시 이미지
           link: {
             mobileWebUrl: window.location.href,
             webUrl: window.location.href,
@@ -41,8 +40,8 @@ export default function KakaoShare({ title, description }: KakaoShareProps) {
           {
             title: '테스트 하러가기',
             link: {
-              mobileWebUrl: window.location.origin,
-              webUrl: window.location.origin,
+              mobileWebUrl: window.location.href,
+              webUrl: window.location.href,
             },
           },
         ],
@@ -51,14 +50,11 @@ export default function KakaoShare({ title, description }: KakaoShareProps) {
   };
 
   return (
-    <button
-      onClick={handleShare}
-      className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#FEE500] py-4 font-bold text-[#3C1E1E] transition-all hover:bg-[#FDE100] active:scale-[0.98]"
+    <button 
+      onClick={shareToKakao}
+      className="flex items-center justify-center gap-2 w-full py-5 bg-[#FEE500] text-[#3c1e1e] rounded-[2rem] font-bold text-lg hover:bg-[#fada00] shadow-md transition-all active:scale-95"
     >
-      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 3c-4.97 0-9 3.134-9 7 0 2.484 1.636 4.664 4.14 5.923l-.84 3.085c-.05.18.05.37.21.45a.4.4 0 00.18.04c.12 0 .23-.05.31-.14l3.614-3.567c.45.06.91.1 1.386.1 4.97 0 9-3.134 9-7s-4.03-7-9-7z" />
-      </svg>
-      카카오톡으로 결과 공유하기
+      <span className="text-xl">💬</span> 카톡 공유
     </button>
   );
 }

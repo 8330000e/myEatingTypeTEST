@@ -1,4 +1,4 @@
-// File: E:\project\myeatingtypetest\my-eating-test\app\page.tsx
+// File: E:\project\myeatingtypetest\my-yum-yum-test\app\page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
