@@ -152,9 +152,10 @@ export default function ResultPage() {
         </section>
 
         {/* 💬 카톡 공유 & 다시하기 섹션 */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-3 cursor-pointer">
           {/* 1. 이 부분을 컴포넌트로 교체합니다 */}
           <KakaoShare type={data.title} /> 
+          
 
           {/* 2. 다시하기 버튼 */}
           <Link 
